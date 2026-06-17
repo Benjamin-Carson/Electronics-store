@@ -1,0 +1,59 @@
+<?php
+include("db_connect.php");
+session_start();
+
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    $sql = "SELECT * FROM users WHERE username='$username' LIMIT 1";
+    $result = mysqli_query($conn, $sql);
+
+    if(mysqli_num_rows($result) == 1){
+        $row = mysqli_fetch_assoc($result);
+        if(password_verify($password, $row['password'])){
+            $_SESSION['user'] = $row['username'];
+            header("Location: dashboard.php");
+            exit();
+        } else {
+            $error = "Invalid password!";
+        }
+    } else {
+        $error = "Invalid username or password!";
+    }
+}
+?>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login – ElectroMart</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="login-container">
+        <h1>ElectroMart</h1>
+        <p>Welcome back</p>
+
+        <form method="POST">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+
+            <button type="submit">Sign In</button>
+        </form>
+
+        <?php 
+        if(isset($error)) {
+            echo "<p class='error' style='color:red; margin-top:10px;'>$error</p>";
+        }
+    ?>
+
+        <p class="demo">admin / admin123</p>
+    </div>
+
+</body>
+
+</html>

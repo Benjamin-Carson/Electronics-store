@@ -1,0 +1,37 @@
+# IDE and Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Database Files
+*.sql.bak
+*.db
+*.sqlite
+
+# Local Configuration
+.env
+.env.local
+config/local.php
+
+# Logs and Temporary Files
+*.log
+tmp/
+temp/
+cache/
+
+# Node Modules (if using build tools)
+node_modules/
+npm-debug.log
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# PHP-specific
+.php-cs-fixer.cache
+.phpunit.result.cache
+vendor/
