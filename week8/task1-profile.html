@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Profile - Bencarson Odhiambo</title>
+    <title>Login - Electro Mart</title>
     <style>
         * {
             margin: 0;
@@ -21,12 +21,16 @@
             padding: 20px;
         }
 
+        .container {
+            max-width: 500px;
+            width: 100%;
+        }
+
         .profile-card {
             background: white;
             border-radius: 20px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             padding: 40px;
-            max-width: 500px;
             width: 100%;
             display: flex;
             flex-direction: column;
@@ -38,11 +42,11 @@
             width: 200px;
             height: 200px;
             border-radius: 50%;
-            object-fit: cover;
             border: 5px solid #667eea;
             margin-bottom: 20px;
             max-width: 100%;
             height: auto;
+            overflow: hidden;
         }
 
         .profile-image img {
@@ -80,6 +84,7 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
+            margin-bottom: 25px;
         }
 
         .contact-item {
@@ -93,6 +98,69 @@
         .contact-item .icon {
             font-size: 1.2rem;
             min-width: 30px;
+        }
+
+        .login-form {
+            width: 100%;
+            border-top: 2px solid #eee;
+            padding-top: 25px;
+        }
+
+        .login-form h2 {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: #667eea;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .login-btn:hover {
+            opacity: 0.9;
+        }
+
+        .error-msg {
+            color: #e74c3c;
+            font-size: 0.85rem;
+            margin-top: 10px;
+            display: none;
         }
 
         @media (max-width: 600px) {
@@ -121,33 +189,67 @@
     </style>
 </head>
 <body>
-    <div class="profile-card">
-        <div class="profile-image">
-            <img src="screenshots/Snapchat-966504281.jpg" alt="Profile Picture">
-        </div>
-        <h1 class="name">Bencarson Odhiambo</h1>
-        <p class="title">Web Developer | Computer Guru</p>
-        <p class="about">
-            The Electro Mart project is an e-commerce web application developed to provide users with a convenient platform for browsing, purchasing, and managing electronic products online. The system focuses on creating a user-friendly and responsive interface that enhances the shopping experience across different devices.
-        </p>
-        <div class="contact-info">
-            <div class="contact-item">
-                <span class="icon">✉</span>
-                <span>bencarson@example.com</span>
+    <div class="container">
+        <div class="profile-card">
+            <div class="profile-image">
+                <img src="screenshots/Snapchat-966504281.jpg" alt="Profile Picture">
             </div>
-            <div class="contact-item">
-                <span class="icon">📞</span>
-                <span>0795938581</span>
+            <h1 class="name">Bencarson Odhiambo</h1>
+            <p class="title">Web Developer | Computer Guru</p>
+            <p class="about">
+                The Electro Mart project is an e-commerce web application developed to provide users with a convenient platform for browsing, purchasing, and managing electronic products online. The system focuses on creating a user-friendly and responsive interface that enhances the shopping experience across different devices.
+            </p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span class="icon">✉</span>
+                    <span>bencarson@example.com</span>
+                </div>
+                <div class="contact-item">
+                    <span class="icon">📞</span>
+                    <span>0795938581</span>
+                </div>
+                <div class="contact-item">
+                    <span class="icon">📍</span>
+                    <span>Nairobi, Kenya</span>
+                </div>
+                <div class="contact-item">
+                    <span class="icon">🐙</span>
+                    <span>github.com/Benjamin-Carson</span>
+                </div>
             </div>
-            <div class="contact-item">
-                <span class="icon">📍</span>
-                <span>Nairobi, Kenya</span>
-            </div>
-            <div class="contact-item">
-                <span class="icon">🐙</span>
-                <span>github.com/Benjamin-Carson</span>
+
+            <div class="login-form">
+                <h2>Login to Browse Products</h2>
+                <form id="loginForm" onsubmit="return handleLogin(event)">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" placeholder="Enter your username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="Enter your password" required>
+                    </div>
+                    <button type="submit" class="login-btn">Login</button>
+                    <p class="error-msg" id="errorMsg">Please enter valid credentials.</p>
+                </form>
             </div>
         </div>
     </div>
+
+    <script>
+        function handleLogin(e) {
+            e.preventDefault();
+            var username = document.getElementById('username').value.trim();
+            var password = document.getElementById('password').value.trim();
+
+            if (username === '' || password === '') {
+                document.getElementById('errorMsg').style.display = 'block';
+                return false;
+            }
+
+            window.location.href = 'task2-showcase.html';
+            return false;
+        }
+    </script>
 </body>
 </html>
