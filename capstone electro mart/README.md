@@ -17,6 +17,7 @@
 | WEEK 5 | Advanced web design and development | 19-23 |
 | WEEK 6 | Database Integration and CRUD Operations | 24-27 |
 | WEEK 7 | Secure Authentication & Session Management | 28-31 |
+| WEEK 8 | Responsive Design & Product Showcase | 32-35 |
 
 ---
 

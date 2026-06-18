@@ -201,6 +201,25 @@ ElectroMart is a comprehensive, full-stack e-commerce web application developed 
 
 ---
 
+### Week 8: Responsive Design and Product Showcase
+**Objectives:** Create responsive web pages using modern CSS techniques
+
+**Features Implemented:**
+- Responsive personal profile page with Flexbox layout
+- Product showcase page with CSS Grid
+- Mobile-first design approach
+- Media queries for mobile, tablet, and desktop breakpoints
+- Local image assets integration
+
+**Technologies:** HTML5, CSS3, Responsive Design, Flexbox, CSS Grid
+
+**Key Files:**
+- task1-profile.html - Responsive profile page
+- task2-showcase.html - Product showcase with grid
+- screenshots/ - Profile and product images
+
+---
+
 ## Database Architecture
 
 ### Core Tables
@@ -305,14 +324,19 @@ electronics-store/
 │   ├── week6_schema.sql
 │   └── screenshots/
 │
-└── week7/                        # Week 7: Complete Platform
-    ├── orders.php
-    ├── ratings.php
-    ├── search_products.php
-    ├── reports.php
-    ├── users.php
-    ├── week6_schema.sql
-    ├── week7_schema.sql
+├── week7/                        # Week 7: Complete Platform
+│   ├── orders.php
+│   ├── ratings.php
+│   ├── search_products.php
+│   ├── reports.php
+│   ├── users.php
+│   ├── week6_schema.sql
+│   ├── week7_schema.sql
+│   └── screenshots/
+│
+└── week8/                        # Week 8: Responsive Design
+    ├── task1-profile.html
+    ├── task2-showcase.html
     └── screenshots/
 ```
 
@@ -537,6 +561,11 @@ electronics-store/
 - database_schema.sql - Main database schema
 - .gitignore - Git configuration file
 
+### Week 8 - Responsive Design
+- task1-profile.html - Responsive personal profile page
+- task2-showcase.html - Product showcase page with grid
+- screenshots/ - Images for profile and products
+
 ### Common Files (All Weeks)
 - index.php - Application entry point
 - db_connect.php - Database connection handler
@@ -578,6 +607,7 @@ Each week folder includes a screenshots directory containing:
 - Week 5 - Advanced administration
 - Week 6 - E-commerce features
 - Week 7 - Complete platform release
+- Week 8 - Responsive design and product showcase
 
 ---
 
@@ -587,7 +617,7 @@ Each week folder includes a screenshots directory containing:
 
 **Project Type:** Full-stack E-Commerce Application
 
-**Duration:** 7-week iterative development cycle
+**Duration:** 8-week iterative development cycle
 
 **Status:** Production Ready
 
@@ -617,6 +647,6 @@ This project demonstrates comprehensive web development practices including:
 
 ---
 
-**Last Updated:** June 2026
+**Last Updated:** June 18, 2026
 
 **Repository:** https://github.com/Benjamin-Carson/Electronics-store
