@@ -29,6 +29,7 @@
             color: white;
             border-radius: 16px;
             margin-bottom: 40px;
+            position: relative;
         }
 
         header h1 {
@@ -39,6 +40,19 @@
         header p {
             font-size: 1.1rem;
             opacity: 0.9;
+        }
+
+        .points-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: white;
+            color: #764ba2;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         .product-grid {
@@ -95,6 +109,191 @@
             font-size: 1.35rem;
             font-weight: 700;
             color: #667eea;
+            margin-bottom: 12px;
+        }
+
+        .buy-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .buy-btn:hover {
+            opacity: 0.9;
+        }
+
+        .buy-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .overlay.active {
+            display: flex;
+        }
+
+        .mpesa-modal {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .mpesa-logo {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .mpesa-modal h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .mpesa-modal p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 6px solid #f0f0f0;
+            border-top: 6px solid #4CAF50;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .checkmark {
+            font-size: 4rem;
+            color: #4CAF50;
+            display: none;
+            margin: 10px 0;
+        }
+
+        .checkmark.show {
+            display: block;
+            animation: popIn 0.3s ease;
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0); }
+            70% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .receipt-modal {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            max-width: 380px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .receipt-modal h2 {
+            text-align: center;
+            color: #333;
+            border-bottom: 2px dashed #ddd;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+
+        .receipt-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .receipt-row.total {
+            border-top: 2px dashed #ddd;
+            margin-top: 10px;
+            padding-top: 15px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        .receipt-thanks {
+            text-align: center;
+            margin-top: 15px;
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .points-notification {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: white;
+            padding: 20px 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            z-index: 1100;
+            animation: slideUp 0.5s ease;
+            border-left: 5px solid #4CAF50;
+        }
+
+        .points-notification.show {
+            display: block;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .points-notification .pts-amount {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #4CAF50;
+        }
+
+        .points-notification .pts-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .success-text {
+            color: #4CAF50;
+            font-size: 1.2rem;
+            font-weight: 700;
+            display: none;
+        }
+
+        .success-text.show {
+            display: block;
+            animation: popIn 0.3s ease;
         }
 
         @media (min-width: 600px) {
@@ -119,6 +318,7 @@
         <header>
             <h1>Electro Mart</h1>
             <p>Premium electronics at unbeatable prices</p>
+            <div class="points-badge"> Points: <span id="totalPoints">0</span></div>
         </header>
 
         <div class="product-grid">
@@ -128,6 +328,7 @@
                     <h2 class="product-name">Wireless Headphones</h2>
                     <p class="product-desc">Noise-cancelling over-ear headphones with 30-hour battery life and deep bass sound.</p>
                     <span class="product-price">KSh 7,500</span>
+                    <button class="buy-btn" onclick="buyProduct('Wireless Headphones', 7500, 'screenshots/headphone.webp')">Buy Now</button>
                 </div>
             </div>
 
@@ -137,6 +338,7 @@
                     <h2 class="product-name">Smart Watch Pro</h2>
                     <p class="product-desc">Fitness tracking, heart rate monitor, GPS, and 7-day battery life in a sleek design.</p>
                     <span class="product-price">KSh 12,000</span>
+                    <button class="buy-btn" onclick="buyProduct('Smart Watch Pro', 12000, 'screenshots/smartwarch.webp')">Buy Now</button>
                 </div>
             </div>
 
@@ -146,6 +348,7 @@
                     <h2 class="product-name">Bluetooth Speaker</h2>
                     <p class="product-desc">Portable waterproof speaker with 360° sound and 20 hours of playtime.</p>
                     <span class="product-price">KSh 4,200</span>
+                    <button class="buy-btn" onclick="buyProduct('Bluetooth Speaker', 4200, 'screenshots/speaker.jpg')">Buy Now</button>
                 </div>
             </div>
 
@@ -155,9 +358,115 @@
                     <h2 class="product-name">Laptop Stand</h2>
                     <p class="product-desc">Adjustable ergonomic aluminum stand compatible with laptops up to 17 inches.</p>
                     <span class="product-price">KSh 3,800</span>
+                    <button class="buy-btn" onclick="buyProduct('Laptop Stand', 3800, 'screenshots/laptop.webp')">Buy Now</button>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="overlay" id="mpesaOverlay">
+        <div class="mpesa-modal" id="mpesaModal">
+            <div class="mpesa-logo">📱</div>
+            <h2>M-Pesa</h2>
+            <p id="mpesaStatus">Processing your payment...</p>
+            <div class="spinner" id="spinner"></div>
+            <div class="checkmark" id="checkmark">&#10003;</div>
+            <div class="success-text" id="successText">Payment Successful!</div>
+        </div>
+    </div>
+
+    <div class="overlay" id="receiptOverlay">
+        <div class="receipt-modal" id="receiptModal">
+            <h2>Electro Mart Receipt</h2>
+            <div class="receipt-row">
+                <span>Product</span>
+                <span id="receiptProduct">-</span>
+            </div>
+            <div class="receipt-row">
+                <span>Price</span>
+                <span id="receiptPrice">-</span>
+            </div>
+            <div class="receipt-row">
+                <span>Transaction ID</span>
+                <span id="receiptTxn">-</span>
+            </div>
+            <div class="receipt-row">
+                <span>Date</span>
+                <span id="receiptDate">-</span>
+            </div>
+            <div class="receipt-row">
+                <span>Payment</span>
+                <span style="color:#4CAF50;font-weight:600;">M-Pesa</span>
+            </div>
+            <div class="receipt-row total">
+                <span>Total</span>
+                <span id="receiptTotal">-</span>
+            </div>
+            <div class="receipt-thanks">Thank you for shopping with us!</div>
+        </div>
+    </div>
+
+    <div class="points-notification" id="pointsNotif">
+        <div style="display:flex;align-items:center;gap:15px;">
+            <div style="font-size:2.5rem;">&#127775;</div>
+            <div>
+                <div class="pts-amount" id="ptsAmount">+4 Bob</div>
+                <div class="pts-label">Points earned on this purchase!</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var totalPoints = 0;
+        var buyButtons = document.querySelectorAll('.buy-btn');
+
+        function buyProduct(name, price, image) {
+            buyButtons.forEach(function(btn) { btn.disabled = true; });
+
+            document.getElementById('mpesaOverlay').classList.add('active');
+            document.getElementById('mpesaStatus').textContent = 'Processing your payment...';
+            document.getElementById('spinner').style.display = 'block';
+            document.getElementById('checkmark').classList.remove('show');
+            document.getElementById('successText').classList.remove('show');
+
+            setTimeout(function() {
+                document.getElementById('spinner').style.display = 'none';
+                document.getElementById('checkmark').classList.add('show');
+                document.getElementById('successText').classList.add('show');
+                document.getElementById('mpesaStatus').textContent = 'Payment Complete';
+
+                setTimeout(function() {
+                    document.getElementById('mpesaOverlay').classList.remove('active');
+
+                    var txnId = 'MPE' + Date.now().toString().slice(-8);
+                    var now = new Date();
+                    var dateStr = now.toLocaleDateString('en-KE', { year: 'numeric', month: 'short', day: 'numeric' }) + ' ' + now.toLocaleTimeString('en-KE', { hour: '2-digit', minute: '2-digit' });
+
+                    document.getElementById('receiptProduct').textContent = name;
+                    document.getElementById('receiptPrice').textContent = 'KSh ' + price.toLocaleString();
+                    document.getElementById('receiptTxn').textContent = txnId;
+                    document.getElementById('receiptDate').textContent = dateStr;
+                    document.getElementById('receiptTotal').textContent = 'KSh ' + price.toLocaleString();
+
+                    document.getElementById('receiptOverlay').classList.add('active');
+
+                    setTimeout(function() {
+                        document.getElementById('receiptOverlay').classList.remove('active');
+
+                        totalPoints += 4;
+                        document.getElementById('totalPoints').textContent = totalPoints;
+                        document.getElementById('ptsAmount').textContent = '+4 Bob';
+                        document.getElementById('pointsNotif').classList.add('show');
+
+                        setTimeout(function() {
+                            document.getElementById('pointsNotif').classList.remove('show');
+                        }, 4000);
+
+                        buyButtons.forEach(function(btn) { btn.disabled = false; });
+                    }, 5000);
+                }, 1000);
+            }, 3000);
+        }
+    </script>
 </body>
 </html>
