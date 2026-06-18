@@ -176,6 +176,52 @@
             margin-bottom: 20px;
         }
 
+        .mpesa-input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            text-align: center;
+            outline: none;
+            transition: border-color 0.3s;
+            margin-bottom: 16px;
+        }
+
+        .mpesa-input:focus {
+            border-color: #4CAF50;
+        }
+
+        .pay-btn {
+            width: 100%;
+            padding: 14px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .pay-btn:hover {
+            opacity: 0.9;
+        }
+
+        .pay-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .mpesa-step {
+            display: block;
+        }
+
+        .mpesa-step.hidden {
+            display: none;
+        }
+
         .spinner {
             width: 60px;
             height: 60px;
@@ -366,12 +412,21 @@
 
     <div class="overlay" id="mpesaOverlay">
         <div class="mpesa-modal" id="mpesaModal">
-            <div class="mpesa-logo">📱</div>
-            <h2>M-Pesa</h2>
-            <p id="mpesaStatus">Processing your payment...</p>
-            <div class="spinner" id="spinner"></div>
-            <div class="checkmark" id="checkmark">&#10003;</div>
-            <div class="success-text" id="successText">Payment Successful!</div>
+            <div class="mpesa-step" id="mpesaStepInput">
+                <div class="mpesa-logo">📱</div>
+                <h2>M-Pesa</h2>
+                <p>Enter your M-Pesa phone number to pay</p>
+                <input class="mpesa-input" id="mpesaPhone" type="tel" placeholder="e.g. 0712345678" maxlength="13">
+                <button class="pay-btn" id="payBtn" onclick="startPayment()">Pay Now</button>
+            </div>
+            <div class="mpesa-step hidden" id="mpesaStepProcessing">
+                <div class="mpesa-logo">📱</div>
+                <h2>M-Pesa</h2>
+                <p id="mpesaStatus">Processing your payment...</p>
+                <div class="spinner" id="spinner"></div>
+                <div class="checkmark" id="checkmark">&#10003;</div>
+                <div class="success-text" id="successText">Payment Successful!</div>
+            </div>
         </div>
     </div>
 
@@ -419,11 +474,29 @@
     <script>
         var totalPoints = 0;
         var buyButtons = document.querySelectorAll('.buy-btn');
+        var currentProduct = {};
 
         function buyProduct(name, price, image) {
             buyButtons.forEach(function(btn) { btn.disabled = true; });
+            currentProduct = { name: name, price: price, image: image };
 
+            document.getElementById('mpesaPhone').value = '';
+            document.getElementById('mpesaStepInput').classList.remove('hidden');
+            document.getElementById('mpesaStepProcessing').classList.add('hidden');
             document.getElementById('mpesaOverlay').classList.add('active');
+            document.getElementById('payBtn').disabled = false;
+        }
+
+        function startPayment() {
+            var phone = document.getElementById('mpesaPhone').value.trim();
+            if (phone === '') {
+                alert('Please enter your M-Pesa phone number.');
+                return;
+            }
+
+            document.getElementById('payBtn').disabled = true;
+            document.getElementById('mpesaStepInput').classList.add('hidden');
+            document.getElementById('mpesaStepProcessing').classList.remove('hidden');
             document.getElementById('mpesaStatus').textContent = 'Processing your payment...';
             document.getElementById('spinner').style.display = 'block';
             document.getElementById('checkmark').classList.remove('show');
@@ -442,11 +515,11 @@
                     var now = new Date();
                     var dateStr = now.toLocaleDateString('en-KE', { year: 'numeric', month: 'short', day: 'numeric' }) + ' ' + now.toLocaleTimeString('en-KE', { hour: '2-digit', minute: '2-digit' });
 
-                    document.getElementById('receiptProduct').textContent = name;
-                    document.getElementById('receiptPrice').textContent = 'KSh ' + price.toLocaleString();
+                    document.getElementById('receiptProduct').textContent = currentProduct.name;
+                    document.getElementById('receiptPrice').textContent = 'KSh ' + currentProduct.price.toLocaleString();
                     document.getElementById('receiptTxn').textContent = txnId;
                     document.getElementById('receiptDate').textContent = dateStr;
-                    document.getElementById('receiptTotal').textContent = 'KSh ' + price.toLocaleString();
+                    document.getElementById('receiptTotal').textContent = 'KSh ' + currentProduct.price.toLocaleString();
 
                     document.getElementById('receiptOverlay').classList.add('active');
 
