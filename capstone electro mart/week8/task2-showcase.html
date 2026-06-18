@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electro Mart - Product Showcase</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f4f6f9;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 16px;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+            display: block;
+        }
+
+        .product-info {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .product-desc {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.5;
+            flex: 1;
+            margin-bottom: 16px;
+        }
+
+        .product-price {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        @media (min-width: 600px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 960px) {
+            .product-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            header h1 {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Electro Mart</h1>
+            <p>Premium electronics at unbeatable prices</p>
+        </header>
+
+        <div class="product-grid">
+            <div class="product-card">
+                <img class="product-image" src="https://via.placeholder.com/400x300/667eea/ffffff?text=Wireless+Headphones" alt="Wireless Headphones">
+                <div class="product-info">
+                    <h2 class="product-name">Wireless Headphones</h2>
+                    <p class="product-desc">Noise-cancelling over-ear headphones with 30-hour battery life and deep bass sound.</p>
+                    <span class="product-price">KSh 7,500</span>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img class="product-image" src="https://via.placeholder.com/400x300/764ba2/ffffff?text=Smart+Watch" alt="Smart Watch">
+                <div class="product-info">
+                    <h2 class="product-name">Smart Watch Pro</h2>
+                    <p class="product-desc">Fitness tracking, heart rate monitor, GPS, and 7-day battery life in a sleek design.</p>
+                    <span class="product-price">KSh 12,000</span>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img class="product-image" src="https://via.placeholder.com/400x300/e74c3c/ffffff?text=Bluetooth+Speaker" alt="Bluetooth Speaker">
+                <div class="product-info">
+                    <h2 class="product-name">Bluetooth Speaker</h2>
+                    <p class="product-desc">Portable waterproof speaker with 360° sound and 20 hours of playtime.</p>
+                    <span class="product-price">KSh 4,200</span>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img class="product-image" src="https://via.placeholder.com/400x300/2ecc71/ffffff?text=Laptop+Stand" alt="Laptop Stand">
+                <div class="product-info">
+                    <h2 class="product-name">Laptop Stand</h2>
+                    <p class="product-desc">Adjustable ergonomic aluminum stand compatible with laptops up to 17 inches.</p>
+                    <span class="product-price">KSh 3,800</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

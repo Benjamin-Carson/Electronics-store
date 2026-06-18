@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Profile - Bencarson Odhiambo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .profile-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #667eea;
+            margin-bottom: 20px;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .name {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .title {
+            font-size: 1.1rem;
+            color: #667eea;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .about {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            padding: 0 10px;
+        }
+
+        .contact-info {
+            width: 100%;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .contact-item .icon {
+            font-size: 1.2rem;
+            min-width: 30px;
+        }
+
+        @media (max-width: 600px) {
+            .profile-card {
+                padding: 20px;
+            }
+
+            .profile-image {
+                width: 140px;
+                height: 140px;
+            }
+
+            .name {
+                font-size: 1.5rem;
+            }
+
+            .about {
+                font-size: 0.9rem;
+                padding: 0;
+            }
+
+            .contact-info {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-card">
+        <div class="profile-image">
+            <img src="https://via.placeholder.com/200" alt="Profile Picture">
+        </div>
+        <h1 class="name">Bencarson Odhiambo</h1>
+        <p class="title">Web Developer | BBIT Student</p>
+        <p class="about">
+            Passionate web developer with a keen interest in building responsive, user-friendly applications. 
+            Currently pursuing BBIT and working on the Electro Mart capstone project, focusing on backend 
+            development and database integration.
+        </p>
+        <div class="contact-info">
+            <div class="contact-item">
+                <span class="icon">✉</span>
+                <span>bencarson@example.com</span>
+            </div>
+            <div class="contact-item">
+                <span class="icon">📞</span>
+                <span>+254 700 000 000</span>
+            </div>
+            <div class="contact-item">
+                <span class="icon">📍</span>
+                <span>Nairobi, Kenya</span>
+            </div>
+            <div class="contact-item">
+                <span class="icon">🐙</span>
+                <span>github.com/Benjamin-Carson</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
